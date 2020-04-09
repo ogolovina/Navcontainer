@@ -1,6 +1,6 @@
 <#
 STEP 1
-Create an isolated environment in which we will convert the code
+Create an isolated environment in which we will convert the code!
 #>
 
 $ContainerName = 'tempdev'
@@ -12,10 +12,10 @@ $Password = ConvertTo-SecureString "NAVUser123" -AsPlainText -Force
 $Credential = New-Object System.Management.Automation/PSCredential ($UserName, $Password)
 
 New-NAVContainer 
-    -accept_eula
-    -containerName $ContainerName
-    -imageName $imageName
-    -licenseFile $licenseFile
-    -auth NavUserPassword
-    -Credential $Credential
-    -doNotExportObjectsToText
+    -accept_eula`
+    -containerName $ContainerName`
+    -imageName $imageName`
+    -licenseFile $licenseFile`
+    -auth NavUserPassword`
+    -Credential $Credential`
+    -doNotExportObjectsToText`

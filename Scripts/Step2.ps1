@@ -18,31 +18,31 @@ Invoke-Command -Session $Session -ScriptBlock {
 
     Write-Host "Export Objects to normal syntax"
     Export-NAVApplicationObject
-        -DatabaseName $DatabaseName
-        -Path "$OriginalPath.txt"
-        -LogPath "$OriginalPath.log"
-        -ExportTxtSkipUnlicensed
+        -DatabaseName $DatabaseName`
+        -Path "$OriginalPath.txt"`
+        -LogPath "$OriginalPath.log"`
+        -ExportTxtSkipUnlicensed`
         -Filter $Filter
 
     Write-Host "Export Objects to new syntax"
     Export-NAVApplicationObject
-        -DatabaseName $DatabaseName
-        -Path "$OriginalPath.txt"
-        -LogPath "$OriginalPath.log"
-        -ExportTxtSkipUnlicensed
+        -DatabaseName $DatabaseName`
+        -Path "$OriginalPath.txt"`
+        -LogPath "$OriginalPath.log"`
+        -ExportTxtSkipUnlicensed`
         -Filter $Filter   
         
     Write-Host "Split the objects"
     Split-NAVApplicationObjectFile
-        -Source "$OriginalPath.txt"
+        -Source "$OriginalPath.txt"`
         -Destination $OriginalPath
 
     Split-NAVApplicationObjectFile
-        -Source "$OriginalNewSyntaxPath.txt"
+        -Source "$OriginalNewSyntaxPath.txt"`
         -Destination $OriginalNewSyntaxPath
 
     Write-Host "Remove Full Files"
-    Remove-Item -Path "$OriginalPath.txt"
+    Remove-Item -Path "$OriginalPath.txt"`
     Remove-Item -Path "$OriginalNewSyntaxPath.txt"
 
 

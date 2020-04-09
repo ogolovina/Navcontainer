@@ -20,9 +20,9 @@ Invoke-Command -Session $Session -ScriptBlock {
     Write-Host "Create delta in new syntax"
     $CompareResult =
         Compare-NAVApplicationObject
-             -OriginalPath $OriginalPath
-             -ModifiedPath $ModifiedPath
-             -DeltaPath $DeltaPath
+             -OriginalPath $OriginalPath`
+             -ModifiedPath $ModifiedPath`
+             -DeltaPath $DeltaPath`
              -ExportToNewSyntax
 
 } -ArgumentList $Filter, $ModifiedPath, $ModifiedNewSyntaxPath    

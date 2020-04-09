@@ -27,28 +27,28 @@ Invoke-Command -Session $Session -ScriptBlock {
     }
 
     Write-Host "Apply Deltas"
-    $UpdateResalt =
+    $UpdateResult =
     Update-NAVApplicationObject
-       -DeltaPath $DeltaPath
-       -TargetPath $WorkingPath
-       -ResultPath $ApplieDeltaPath
+       -DeltaPath $DeltaPath`
+       -TargetPath $WorkingPath`
+       -ResultPath $ApplieDeltaPath`
        -Force 
       
     Write-Host "Import Deltas      "
     $DatabaseName = ((Get-NAVServerConfiguration -ServerInstace NAV -AsXml).configuration.appSettings.add | Where )
     Import-NAVApplicationObject
-         -DatabaseName $DatabaseName
-         -Path "$AppliedDeltaPath\*.txt"
-         -LogPath "$WorkingPath\ImportLog"
-         -ImportAction Overwrite
-         -SynchronizeSchemaChanges Force 
+         -DatabaseName $DatabaseName`
+         -Path "$AppliedDeltaPath\*.txt"`
+         -LogPath "$WorkingPath\ImportLog"`
+         -ImportAction Overwrite`
+         -SynchronizeSchemaChanges Force `
          -Confirm:$false
 
     Write-Host "Compile Uncompiled"
     Compile-NAVApplicationObject
-         -DatabaseName $DatabaseName
-         -LogPath "$WorkingPath\CompileLog"
-         -Recompile
+         -DatabaseName $DatabaseName`
+         -LogPath "$WorkingPath\CompileLog"`
+         -Recompile`
          -Filter "Compiled=0"     
 
   } -ArgumentList $DeltaPath, $OriginalPath, $WorkingPath, $ApplieDeltaPath

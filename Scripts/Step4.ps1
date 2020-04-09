@@ -18,32 +18,32 @@ Invoke-Command -Session $Session -ScriptBlock {
 
     Write-Host "Export Objects to normal syntax"
     Export-NAVApplicationObject
-        -DatabaseName $DatabaseName
-        -Path "$ModifiedPath.txt"
-        -LogPath "$ModifiedPath.log"
-        -ExportTxtSkipUnlicensed
+        -DatabaseName $DatabaseName`
+        -Path "$ModifiedPath.txt"`
+        -LogPath "$ModifiedPath.log"`
+        -ExportTxtSkipUnlicensed`
         -Filter $Filter
 
     Write-Host "Export Objects to new syntax"
     Export-NAVApplicationObject
-        -DatabaseName $DatabaseName
-        -Path "$ModifiedNewSyntaxPath.txt"
-        -LogPath "$ModifiedNewSyntaxPath.log"
-        -ExportTxtSkipUnlicensed
-        -Filter $Filter 
+        -DatabaseName $DatabaseName`
+        -Path "$ModifiedNewSyntaxPath.txt"`
+        -LogPath "$ModifiedNewSyntaxPath.log"`
+        -ExportTxtSkipUnlicensed`
+        -Filter $Filter `
         -ExportToNewSyntax  
         
     Write-Host "Split the objects"
     Split-NAVApplicationObjectFile
-        -Source "$ModifiedPath.txt"
+        -Source "$ModifiedPath.txt"`
         -Destination $ModifiedPath  
         
     Split-NAVApplicationObjectFile
-        -Source "$ModifiedNewSyntaxPath.txt"
+        -Source "$ModifiedNewSyntaxPath.txt"`
         -Destination $ModifiedNewSyntaxPath
 
     Write-Host "Remove Full Fiels"
-    Remove-Item -Path "$ModifiedPath.txt"
+    Remove-Item -Path "$ModifiedPath.txt"`
     Remove-Item -Path "$ModifiedNewSyntaxPath.txt"
     
 } -ArgumentList $Filter, $ModifiedPath, $ModifiedNewSyntaxPath    
